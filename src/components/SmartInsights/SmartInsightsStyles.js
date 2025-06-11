@@ -19,10 +19,12 @@ export const styles = StyleSheet.create({
     fontWeight: '800',
     color: '#FFFFFF',
     marginBottom: 5,
+    left: 100, // Adjusted for back button
   },
   headerSubtitle: {
     fontSize: 16,
     color: '#8E9DBB',
+    left: 100,
   },
   card: {
     backgroundColor: '#1A2138',
@@ -248,11 +250,13 @@ export const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 10,
   },
-
-  // bottomNavContainer: {
-  //   position: 'absolute',
-  //   bottom: 0,
-  //   left: 0,
-  //   right: 0,
-  // },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 10,
+    zIndex: 1000,
+    backgroundColor: '#1A2138',
+    padding: 10,
+    borderRadius: 50,
+  },
 });

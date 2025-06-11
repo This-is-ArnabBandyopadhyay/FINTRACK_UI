@@ -1,9 +1,9 @@
-// src/components/Sidebar/Sidebar.js
+//src/components/Sidebar/Sidebar.js
 import React from 'react';
 import {View, Text, TouchableOpacity, Animated} from 'react-native';
 import styles from './SidebarStyles';
 
-const Sidebar = ({ isOpen, closeSidebar, animatedValue }) => {
+const Sidebar = ({isOpen, closeSidebar, animatedValue, onScreenChange}) => {
   const translateX = animatedValue.interpolate({
     inputRange: [0, 1],
     outputRange: [-300, 0],
@@ -11,9 +11,18 @@ const Sidebar = ({ isOpen, closeSidebar, animatedValue }) => {
 
   const pointerEvents = isOpen ? 'auto' : 'none';
 
+  const handleMenuItemPress = (screen) => { 
+    onScreenChange(screen);
+    closeSidebar();
+  }
+
   return (
     <Animated.View
-      style={[styles.sidebarContainer, { transform: [{ translateX }]}, pointerEvents,]}>
+      style={[
+        styles.sidebarContainer,
+        {transform: [{translateX}]},
+        pointerEvents,
+      ]}>
       <View style={styles.sidebarHeader}>
         <Text style={styles.sidebarTitle}>Fintrack Menu</Text>
         <TouchableOpacity onPress={closeSidebar} style={styles.closeButton}>
@@ -21,14 +30,20 @@ const Sidebar = ({ isOpen, closeSidebar, animatedValue }) => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.menuItem}>
+      <TouchableOpacity
+        style={styles.menuItem}
+        onPress={() => handleMenuItemPress('dashboard')}>
         <Text style={styles.menuText}>📊 Dashboard</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuItem}>
+      <TouchableOpacity
+        style={styles.menuItem}
+        onPress={() => handleMenuItemPress('transactions')}>
         <Text style={styles.menuText}>💵 Transactions</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuItem}>
-        <Text style={styles.menuText}>📈 Analytics</Text>
+      <TouchableOpacity
+        style={styles.menuItem}
+        onPress={() => handleMenuItemPress('stats')}>
+        <Text style={styles.menuText}>📈 Analytics / Smart Insights</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.menuItem}>
         <Text style={styles.menuText}>🎯 Goals</Text>
@@ -45,3 +60,5 @@ const Sidebar = ({ isOpen, closeSidebar, animatedValue }) => {
 };
 
 export default Sidebar;
+
+

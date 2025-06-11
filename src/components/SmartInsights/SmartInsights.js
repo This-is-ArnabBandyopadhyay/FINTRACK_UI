@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,21 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {LineChart, PieChart} from 'react-native-chart-kit';
-import {styles} from './SmartInsightsStyles';
-import Layout from '../../components/Layout/Layout';
+import { styles } from './SmartInsightsStyles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+//import Layout from '../../components/Layout/Layout';
 //import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
-const SmartInsights = () => {
-  const [currentScreen, setCurrentScreen] = useState('smartInsights');
+const SmartInsights = ({ onClose, onBack }) => {
+  //const [currentScreen, setCurrentScreen] = useState('smartInsights');
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else if (onClose) {
+      onClose();
+    }
+  };
 
   // Add this new chart data at the top
   const monthlyComparisonData = {
@@ -86,168 +95,165 @@ const SmartInsights = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Layout currentScreen={currentScreen} onTabPress={setCurrentScreen}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>Smart Insights</Text>
-            <Text style={styles.headerSubtitle}>Your spending at a glance</Text>
+      {/* <Layout currentScreen={currentScreen} onTabPress={setCurrentScreen}> */}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Header */}
+        <View style={styles.header}>
+          <TouchableOpacity
+            onPress={handleBack}
+            style={styles.backButton}>
+            <Icon name="arrow-left" size={24} color="#FF9900" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Smart Insights</Text>
+          <Text style={styles.headerSubtitle}>Your spending at a glance</Text>
+        </View>
+        {/* Today's Spend Card */}
+        <View style={styles.card}>
+          <Text style={styles.cardSubtitle}>Today's Spend</Text>
+          <Text style={styles.cardTitle}>$1,500</Text>
+          <View style={styles.trendContainer}>
+            <Text style={styles.trendText}>40% more than usual</Text>
           </View>
-          {/* Today's Spend Card */}
-          <View style={styles.card}>
-            <Text style={styles.cardSubtitle}>Today's Spend</Text>
-            <Text style={styles.cardTitle}>$1,500</Text>
-            <View style={styles.trendContainer}>
-              <Text style={styles.trendText}>40% more than usual</Text>
-            </View>
-          </View>
-          {/* Weekly Spending Chart */}
+        </View>
+        {/* Weekly Spending Chart */}
+        <View style={styles.chartCard}>
+          <Text style={styles.chartTitle}>Weekly Spending</Text>
+          <LineChart
+            data={spendingData}
+            width={styles.chartWidth}
+            height={220}
+            chartConfig={styles.chartConfig}
+            bezier
+            style={styles.chartStyle}
+          />
+        </View>
+        {/* Categories */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Spending by Category</Text>
           <View style={styles.chartCard}>
-            <Text style={styles.chartTitle}>Weekly Spending</Text>
-            <LineChart
-              data={spendingData}
+            <PieChart
+              data={categoryData}
               width={styles.chartWidth}
-              height={220}
+              height={180}
               chartConfig={styles.chartConfig}
-              bezier
-              style={styles.chartStyle}
+              accessor="amount"
+              backgroundColor="transparent"
+              paddingLeft="15"
+              absolute
             />
           </View>
-          {/* Categories */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Spending by Category</Text>
-            <View style={styles.chartCard}>
-              <PieChart
-                data={categoryData}
-                width={styles.chartWidth}
-                height={180}
-                chartConfig={styles.chartConfig}
-                accessor="amount"
-                backgroundColor="transparent"
-                paddingLeft="15"
-                absolute
-              />
-            </View>
-            <View style={styles.categoriesContainer}>
-              {categoryData.map(category => (
-                <TouchableOpacity
-                  key={category.name}
-                  style={styles.categoryItem}>
-                  <View
-                    style={[
-                      styles.categoryBullet,
-                      {backgroundColor: category.color},
-                    ]}
-                  />
-                  <Text style={styles.categoryText}>
-                    {category.name}: {category.amount}%
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
+          <View style={styles.categoriesContainer}>
+            {categoryData.map(category => (
+              <TouchableOpacity key={category.name} style={styles.categoryItem}>
+                <View
+                  style={[
+                    styles.categoryBullet,
+                    {backgroundColor: category.color},
+                  ]}
+                />
+                <Text style={styles.categoryText}>
+                  {category.name}: {category.amount}%
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
-          // Then update the Monthly Comparison section in the return statement:
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Monthly Spending Comparison</Text>
+        </View>
+        // Then update the Monthly Comparison section in the return statement:
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Monthly Spending Comparison</Text>
 
-            <View style={styles.comparisonContainer}>
-              <View style={styles.monthLabelContainer}>
-                <View style={styles.monthLabel}>
-                  <View style={[styles.currentMonthDot]} />
-                  <Text style={styles.monthLabelText}>Current Month</Text>
-                </View>
-                <View style={styles.monthLabel}>
-                  <View style={[styles.lastMonthDot]} />
-                  <Text style={styles.monthLabelText}>Last Month</Text>
-                </View>
+          <View style={styles.comparisonContainer}>
+            <View style={styles.monthLabelContainer}>
+              <View style={styles.monthLabel}>
+                <View style={[styles.currentMonthDot]} />
+                <Text style={styles.monthLabelText}>Current Month</Text>
               </View>
+              <View style={styles.monthLabel}>
+                <View style={[styles.lastMonthDot]} />
+                <Text style={styles.monthLabelText}>Last Month</Text>
+              </View>
+            </View>
 
-              {monthlyComparisonData.labels.map((category, index) => {
-                const currentValue =
-                  monthlyComparisonData.datasets[0].data[index];
-                const lastValue = monthlyComparisonData.datasets[1].data[index];
-                const change = ((currentValue - lastValue) / lastValue) * 100;
+            {monthlyComparisonData.labels.map((category, index) => {
+              const currentValue =
+                monthlyComparisonData.datasets[0].data[index];
+              const lastValue = monthlyComparisonData.datasets[1].data[index];
+              const change = ((currentValue - lastValue) / lastValue) * 100;
 
-                return (
-                  <View key={index} style={styles.comparisonRow}>
-                    <Text style={styles.categoryLabel}>{category}</Text>
+              return (
+                <View key={index} style={styles.comparisonRow}>
+                  <Text style={styles.categoryLabel}>{category}</Text>
 
-                    <View style={styles.barContainer}>
-                      <View style={[styles.barBackground, {width: '100%'}]} />
-                      <View
-                        style={[
-                          styles.currentMonthBar,
-                          {
-                            width: `${Math.min(
-                              100,
-                              (currentValue / 1500) * 100,
-                            )}%`,
-                            backgroundColor:
-                              monthlyComparisonData.datasets[0].colors[index](
-                                1,
-                              ),
-                          },
-                        ]}>
-                        <Text style={styles.barValue}>${currentValue}</Text>
-                      </View>
-                      <View
-                        style={[
-                          styles.lastMonthBar,
-                          {
-                            width: `${Math.min(
-                              100,
-                              (lastValue / 1500) * 100,
-                            )}%`,
-                            backgroundColor:
-                              monthlyComparisonData.datasets[1].colors[index](
-                                1,
-                              ),
-                          },
-                        ]}>
-                        <Text style={styles.barValue}>${lastValue}</Text>
-                      </View>
+                  <View style={styles.barContainer}>
+                    <View style={[styles.barBackground, {width: '100%'}]} />
+                    <View
+                      style={[
+                        styles.currentMonthBar,
+                        {
+                          width: `${Math.min(
+                            100,
+                            (currentValue / 1500) * 100,
+                          )}%`,
+                          backgroundColor:
+                            monthlyComparisonData.datasets[0].colors[index](1),
+                        },
+                      ]}>
+                      <Text style={styles.barValue}>${currentValue}</Text>
                     </View>
-
-                    <View style={styles.changeContainer}>
-                      <Text
-                        style={[
-                          styles.changeText,
-                          change >= 0
-                            ? styles.positiveChange
-                            : styles.negativeChange,
-                        ]}>
-                        {change >= 0 ? '↑' : '↓'} {Math.abs(Math.round(change))}
-                        %
-                      </Text>
+                    <View
+                      style={[
+                        styles.lastMonthBar,
+                        {
+                          width: `${Math.min(100, (lastValue / 1500) * 100)}%`,
+                          backgroundColor:
+                            monthlyComparisonData.datasets[1].colors[index](1),
+                        },
+                      ]}>
+                      <Text style={styles.barValue}>${lastValue}</Text>
                     </View>
                   </View>
-                );
-              })}
-            </View>
 
-            <View style={styles.insightsContainer}>
-              {[
-                'Food spending increased by 33% due to more dining out',
-                'Shopping expenses decreased by 15% as you stayed within budget',
-                'Travel costs rose by 50% with summer vacation plans',
-                'Bills remained consistent with last month',
-              ].map((insight, index) => (
-                <View key={index} style={styles.insightItem}>
-                  <View style={styles.insightBullet} />
-                  <Text style={styles.insightText}>{insight}</Text>
+                  <View style={styles.changeContainer}>
+                    <Text
+                      style={[
+                        styles.changeText,
+                        change >= 0
+                          ? styles.positiveChange
+                          : styles.negativeChange,
+                      ]}>
+                      {change >= 0 ? '↑' : '↓'} {Math.abs(Math.round(change))}%
+                    </Text>
+                  </View>
                 </View>
-              ))}
-            </View>
+              );
+            })}
           </View>
-        </ScrollView>
 
-        {/* Bottom Navigation */}
-        {/* <View>
+          <View style={styles.insightsContainer}>
+            {[
+              'Food spending increased by 33% due to more dining out',
+              'Shopping expenses decreased by 15% as you stayed within budget',
+              'Travel costs rose by 50% with summer vacation plans',
+              'Bills remained consistent with last month',
+            ].map((insight, index) => (
+              <View key={index} style={styles.insightItem}>
+                <View style={styles.insightBullet} />
+                <Text style={styles.insightText}>{insight}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
+
+      {/* Bottom Navigation */}
+      {/* <View>
         <BottomNavBar currentScreen={currentScreen} onTabPress={onTabPress} />
       </View> */}
-      </Layout>
+      {/* </Layout> */}
     </SafeAreaView>
   );
 };
 
 export default SmartInsights;
+
+

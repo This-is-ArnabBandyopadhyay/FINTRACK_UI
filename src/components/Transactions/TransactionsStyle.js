@@ -1,328 +1,241 @@
-// import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
-// const TransactionsStyle = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#0A0E17',
-//     paddingTop: 50,
-//   },
-//   header: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     paddingHorizontal: 20,
-//     paddingBottom: 15,
-//     borderBottomWidth: 1,
-//     borderBottomColor: '#1E293B',
-//   },
-//   headerTitle: {
-//     color: '#FFFFFF',
-//     fontSize: 24,
-//     fontWeight: 'bold',
-//   },
-//   closeButton: {
-//     padding: 5,
-//   },
-//   closeIcon: {
-//     color: '#64748B',
-//     fontSize: 24,
-//   },
-//   tabsContainer: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-around',
-//     marginVertical: 15,
-//     paddingHorizontal: 10,
-//   },
-//   tab: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     paddingVertical: 8,
-//     paddingHorizontal: 12,
-//     borderRadius: 20,
-//   },
-//   activeTab: {
-//     backgroundColor: '#1E293B',
-//   },
-//   tabText: {
-//     color: '#64748B',
-//     fontSize: 14,
-//     fontWeight: '500',
-//     marginLeft: 5,
-//   },
-//   activeTabText: {
-//     color: '#FFFFFF',
-//   },
-//   tabIcon: {
-//     color: '#64748B',
-//     fontSize: 18,
-//   },
-//   activeTabIcon: {
-//     color: '#FFFFFF',
-//   },
-//   listContainer: {
-//     paddingHorizontal: 15,
-//   },
-//   txItem: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     paddingVertical: 15,
-//     borderBottomWidth: 1,
-//     borderBottomColor: '#1E293B',
-//   },
-//   txLeft: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//   },
-//   txIconSent: {
-//     color: '#EF4444',
-//     fontSize: 24,
-//     backgroundColor: '#1E293B',
-//     padding: 8,
-//     borderRadius: 12,
-//     marginRight: 12,
-//   },
-//   txIconReceived: {
-//     color: '#10B981',
-//     fontSize: 24,
-//     backgroundColor: '#1E293B',
-//     padding: 8,
-//     borderRadius: 12,
-//     marginRight: 12,
-//   },
-//   txIconSwap: {
-//     color: '#3B82F6',
-//     fontSize: 24,
-//     backgroundColor: '#1E293B',
-//     padding: 8,
-//     borderRadius: 12,
-//     marginRight: 12,
-//   },
-//   txDetails: {
-//     flexDirection: 'column',
-//   },
-//   txType: {
-//     color: '#FFFFFF',
-//     fontSize: 16,
-//     fontWeight: '500',
-//     marginBottom: 3,
-//   },
-//   txDate: {
-//     color: '#64748B',
-//     fontSize: 13,
-//   },
-//   txRight: {
-//     alignItems: 'flex-end',
-//   },
-//   txAmount: {
-//     fontSize: 16,
-//     fontWeight: '600',
-//     marginBottom: 3,
-//   },
-//   txAmountSent: {
-//     color: '#EF4444',
-//   },
-//   txAmountReceived: {
-//     color: '#10B981',
-//   },
-//   txAmountSwap: {
-//     color: '#3B82F6',
-//   },
-//   txStatus: {
-//     fontSize: 12,
-//     paddingHorizontal: 8,
-//     paddingVertical: 2,
-//     borderRadius: 10,
-//     overflow: 'hidden',
-//   },
-//   txStatusCompleted: {
-//     color: '#10B981',
-//     backgroundColor: 'rgba(16, 185, 129, 0.1)',
-//   },
-//   txStatusPending: {
-//     color: '#F59E0B',
-//     backgroundColor: 'rgba(245, 158, 11, 0.1)',
-//   },
-//   emptyContainer: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     paddingVertical: 50,
-//   },
-//   emptyIcon: {
-//     color: '#64748B',
-//     fontSize: 50,
-//     marginBottom: 15,
-//   },
-//   emptyText: {
-//     color: '#64748B',
-//     fontSize: 16,
-//   },
-// });
-
-// export default TransactionsStyle;
-
-
-/////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-
-import {StyleSheet} from 'react-native';
+const {width, height} = Dimensions.get('window');
+const CONTENT_HEIGHT = height - 220; // Space for header and bottom nav
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
-    paddingTop: 20,
+    backgroundColor: '#0A0F1F', // Deep navy background
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    padding: 20,
+    paddingTop: 2,
+    backgroundColor: '#0A0F1F',
   },
   headerText: {
     color: '#FFFFFF',
     fontSize: 24,
     fontWeight: 'bold',
+    fontFamily: 'HelveticaNeue-Bold',
   },
   filterButton: {
-    backgroundColor: '#1E1E1E',
+    backgroundColor: '#1A2138',
     padding: 10,
     borderRadius: 20,
+    paddingHorizontal: 15,
   },
   filterText: {
-    color: '#BB86FC',
+    color: '#6C7EE1',
     fontSize: 14,
+    fontFamily: 'HelveticaNeue-Medium',
+  },
+  mainScrollView: {
+    flex: 1,
+  },
+  page: {
+    width,
+    height: CONTENT_HEIGHT,
+    paddingHorizontal: 20,
   },
   balanceCard: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 15,
-    padding: 20,
-    marginHorizontal: 20,
-    marginBottom: 25,
-    shadowColor: '#BB86FC',
-    shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 8,
+    backgroundColor: '#1A2138',
+    borderRadius: 20,
+    padding: 25,
+    marginBottom: 20,
+    shadowColor: '#6C7EE1',
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 10,
   },
   balanceTitle: {
-    color: '#A0A0A0',
+    color: '#A0B0F0',
     fontSize: 14,
     marginBottom: 5,
+    fontFamily: 'HelveticaNeue-Medium',
   },
   balanceAmount: {
     color: '#FFFFFF',
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: 10,
+    fontFamily: 'HelveticaNeue-Bold',
   },
   balanceInfo: {
-    color: '#BB86FC',
+    color: '#6C7EE1',
     fontSize: 12,
+    fontFamily: 'HelveticaNeue-Medium',
   },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 15,
-  },
-  sectionTitle: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  viewAll: {
-    color: '#BB86FC',
-    fontSize: 14,
-  },
-  transactionsContainer: {
-    height: 220,
-    paddingLeft: 20,
-  },
-  transactionCard: {
-    width: 160,
-    backgroundColor: '#1E1E1E',
-    borderRadius: 15,
-    padding: 15,
-    marginRight: 15,
+  visualizationContainer: {
+    flex: 1,
+    backgroundColor: '#1A2138',
+    borderRadius: 20,
+    padding: 25,
+    marginBottom: 20,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
     elevation: 5,
   },
-  transactionTop: {
+  visualizationTitle: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 25,
+    textAlign: 'center',
+    fontFamily: 'HelveticaNeue-Bold',
+  },
+  barChart: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    height: 180,
+    marginBottom: 30,
+  },
+  bar: {
+    width: 28,
+    borderRadius: 8,
+    marginHorizontal: 4,
+  },
+  barLabel: {
+    color: '#A0B0F0',
+    fontSize: 10,
+    textAlign: 'center',
+    marginTop: 8,
+    fontFamily: 'HelveticaNeue-Medium',
+  },
+  pieChartContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 200,
+    marginBottom: 25,
+  },
+  categoryList: {
+    marginTop: 15,
+  },
+  categoryItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  categoryColor: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    marginRight: 12,
+  },
+  categoryText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    flex: 1,
+    fontFamily: 'HelveticaNeue-Medium',
+  },
+  categoryAmount: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 'bold',
+    fontFamily: 'HelveticaNeue-Bold',
+  },
+  transactionsContainer: {
+    flex: 1,
+  },
+  transactionItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 15,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#253055',
+  },
+  transactionLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
   },
   transactionIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#BB86FC',
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 15,
+  },
+  transactionDetails: {
+    flex: 1,
   },
   transactionCategory: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '600',
-    marginBottom: 5,
+    fontFamily: 'HelveticaNeue-Medium',
+    marginBottom: 3,
   },
   transactionDate: {
-    color: '#A0A0A0',
+    color: '#A0B0F0',
     fontSize: 12,
-    marginBottom: 10,
+    fontFamily: 'HelveticaNeue-Medium',
   },
   transactionAmount: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'HelveticaNeue-Bold',
+    minWidth: 90,
+    textAlign: 'right',
   },
   incomeAmount: {
-    color: '#4CAF50',
+    color: '#4CD964',
   },
   expenseAmount: {
-    color: '#F44336',
+    color: '#FF5E5E',
   },
-  chartContainer: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 15,
-    padding: 15,
-    marginHorizontal: 20,
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 20,
-    marginBottom: 30,
   },
-  chartTitle: {
+  statItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  statLabel: {
+    color: '#A0B0F0',
+    fontSize: 12,
+    fontFamily: 'HelveticaNeue-Medium',
+  },
+  statValue: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 15,
-  },
-  chart: {
-    height: 150,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-  },
-  chartBar: {
-    width: 30,
-    backgroundColor: '#BB86FC',
-    borderRadius: 5,
-    marginHorizontal: 5,
-  },
-  chartLabel: {
-    color: '#A0A0A0',
-    fontSize: 10,
-    textAlign: 'center',
     marginTop: 5,
+    fontFamily: 'HelveticaNeue-Bold',
+  },
+  paginationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 15,
+    backgroundColor: '#0A0F1F',
+    paddingBottom: 30, // Extra space for bottom nav
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#253055',
+    marginHorizontal: 6,
+  },
+  activeDot: {
+    backgroundColor: '#6C7EE1',
+  },
+  backButton: {
+    paddingRight: 15,
+  },
+  backButtonText: {
+    fontSize: 24,
+    color: '#FF9900',
   },
 });
-
-
-

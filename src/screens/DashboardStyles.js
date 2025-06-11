@@ -108,21 +108,4 @@ export default StyleSheet.create({
   warningButton: {
     backgroundColor: 'rgba(32, 70, 220, 0.29)',
   },
-  // bottomNavContainer: {
-  //   position: 'absolute',
-  //   bottom: 0,
-  //   left: 0,
-  //   right: 0,
-  //   backgroundColor: '#1f1f1f',
-  //   borderTopWidth: 1,
-  //   borderTopColor: 'rgba(255,255,255,0.1)',
-  //   zIndex: 100,
-  //   paddingVertical: 1,
-  //   paddingHorizontal: 16,
-  //   shadowColor: '#000',
-  //   shadowOffset: {width: 0, height: -5},
-  //   shadowOpacity: 0.3,
-  //   shadowRadius: 10,
-  //   elevation: 10,
-  // },
 });

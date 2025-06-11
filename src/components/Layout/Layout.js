@@ -13,7 +13,7 @@ import BottomNavBar from '../BottomNavBar/BottomNavBar';
 import styles from './LayoutStyles';
 
 
-const Layout = ({children, currentScreen, onTabPress}) => {
+const Layout = ({children, currentScreen, onScreenChange}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const animatedValue = useRef(new Animated.Value(0)).current;
 
@@ -42,6 +42,10 @@ const Layout = ({children, currentScreen, onTabPress}) => {
     }).start(() => setSidebarOpen(false));
   };
 
+  const handleScreenChange = (screen) => {
+    onScreenChange(screen);
+    setSidebarOpen(false); // Close sidebar when changing screen
+  };
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#0a1f3a" />
@@ -57,22 +61,31 @@ const Layout = ({children, currentScreen, onTabPress}) => {
       <Sidebar
         isOpen={sidebarOpen}
         closeSidebar={closeSidebar}
+        onClose={() => setSidebarOpen(false)}
         animatedValue={animatedValue}
+        currentScreen={currentScreen}
+        onScreenChange={onScreenChange}
       />
 
       <View style={styles.mainContainer}>
         <TouchableOpacity onPress={toggleSidebar} style={styles.menuButton}>
           <Icon name="menu" size={25} color="#fff" />
         </TouchableOpacity>
-        
+
         {children}
 
         <View style={styles.bottomNavContainer}>
-          <BottomNavBar currentScreen={currentScreen} onTabPress={onTabPress} />
+          <BottomNavBar
+            currentScreen={currentScreen}
+            onScreenChange={handleScreenChange}
+            onMenuPress={() => setSidebarOpen(!sidebarOpen)}
+          />
         </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default Layout;
+export default Layout ;
+
+
