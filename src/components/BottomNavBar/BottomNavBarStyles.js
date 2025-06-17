@@ -10,8 +10,8 @@ export default StyleSheet.create({
     width: '100%',
     //backgroundColor: '#FFFFFF',
     backgroundColor: '#333333',
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
+    //borderTopWidth: 1,
+   // borderTopColor: '#F0F0F0',
     paddingHorizontal: 16,
   },
   tabButton: {

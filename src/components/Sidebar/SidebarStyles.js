@@ -28,7 +28,6 @@ export default StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginLeft: 60,
-    
   },
   closeButton: {
     backgroundColor: '#333',
@@ -37,7 +36,6 @@ export default StyleSheet.create({
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   closeButtonText: {
     color: '#fff',
@@ -62,4 +60,30 @@ export default StyleSheet.create({
     color: '#555',
     fontSize: 14,
   },
+  // bottomButtonContainer: {
+  //   position: 'absolute',
+  //   bottom: 70,
+  //   left: 0,
+  //   right: 0,
+  //   padding: 20,
+  //   backgroundColor: '#0f0f0f', // Match your sidebar background
+  // },
+  // gradientButton: {
+  //   padding: 15,
+  //   borderRadius: 8,
+  //   width: 175,
+  //   marginLeft: 40,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   elevation: 3,
+  //   shadowColor: '#000',
+  //   shadowOffset: {width: 0, height: 2},
+  //   shadowOpacity: 0.3,
+  //   shadowRadius: 3,
+  // },
+  // gradientButtonText: {
+  //   color: 'white',
+  //   fontSize: 16,
+  //   fontWeight: 'bold',
+  // },
 });

@@ -4,12 +4,12 @@ import React, {useState} from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
-import Layout from '../components/Layout/Layout';
+import Layout from '../../components/Layout/Layout';
 import styles from './DashboardStyles';
-import Transactions from '../components/Transactions/Transactions';
-import SmartInsights from '../components/SmartInsights/SmartInsights';
+import Transactions from '../Transactions/Transactions';
+import SmartInsights from '../SmartInsights/SmartInsights';
 
-const Dashboard = () => {
+const Dashboard = ({onBack}) => {
   // const [sidebarOpen, setSidebarOpen] = useState(false);
   // const animatedValue = useRef(new Animated.Value(0)).current;
   const [currentScreen, setCurrentScreen] = useState('dashboard');
@@ -27,16 +27,16 @@ const Dashboard = () => {
   };
 
   return (
-    <Layout currentScreen={currentScreen} onScreenChange={handleScreenChange}>
+    <Layout currentScreen={currentScreen} onScreenChange={handleScreenChange} onBack={onBack}>
       {(currentScreen === 'dashboard' || currentScreen === 'home') && (
         <ScrollView contentContainerStyle={styles.scrollContent}>
           {/* Header with Gradient */}
 
           <LinearGradient
-            colors={['#0a1f3a', '#1a3a6a']}
+            colors={['#2657eb', '#de6161']}
             style={styles.header}
             start={{x: 0, y: 0}}
-            end={{x: 1, y: 1}}>
+            end={{ x: 1, y: 1 }}>
             <Text style={styles.headerText}>🚀 Fintrack Dashboard</Text>
             <Text style={styles.subHeaderText}>Your AI Finance Assistant</Text>
           </LinearGradient>
@@ -146,7 +146,7 @@ const Dashboard = () => {
 
             {/* Blockchain Info */}
             <LinearGradient
-              colors={['#0f2027', '#203a43', '#2c5364']}
+              colors={['#4da0b0','#f44336']}
               style={styles.card}
               start={{x: 0, y: 0}}
               end={{x: 1, y: 1}}>

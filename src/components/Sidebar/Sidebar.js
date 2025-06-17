@@ -1,9 +1,10 @@
 //src/components/Sidebar/Sidebar.js
 import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 import {View, Text, TouchableOpacity, Animated} from 'react-native';
 import styles from './SidebarStyles';
 
-const Sidebar = ({isOpen, closeSidebar, animatedValue, onScreenChange}) => {
+const Sidebar = ({isOpen, closeSidebar, animatedValue, onScreenChange,onBack}) => {
   const translateX = animatedValue.interpolate({
     inputRange: [0, 1],
     outputRange: [-300, 0],
@@ -55,6 +56,19 @@ const Sidebar = ({isOpen, closeSidebar, animatedValue, onScreenChange}) => {
       <View style={styles.footer}>
         <Text style={styles.footerText}>Fintrack Pro v1.0</Text>
       </View>
+
+      {/* Add this fixed gradient button at the bottom */}
+      {/* <View style={styles.bottomButtonContainer}>
+        <TouchableOpacity onPress={() => onBack()} activeOpacity={0.7}>
+          <LinearGradient
+            colors={['#FF7B25', '#FF4D6D']}
+            style={styles.gradientButton}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}>
+            <Text style={styles.gradientButtonText}>Go to Messages</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View> */}
     </Animated.View>
   );
 };

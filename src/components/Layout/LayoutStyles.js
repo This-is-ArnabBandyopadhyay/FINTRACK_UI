@@ -10,6 +10,28 @@ export default StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    width: '100%',
+    backgroundColor: '#1f1f1f',
+  },
+  gradientButton: {
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  gradientButtonText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -17,12 +39,10 @@ export default StyleSheet.create({
   },
   menuButton: {
     position: 'relative',
-    top: 1,
-    left: 20,
+    top: 0,
+    left: 10,
     zIndex: 101, // above other content
-    paddingTop: 20,
-
-   
+    paddingTop: 5,
   },
   bottomNavContainer: {
     position: 'absolute',
